@@ -85,7 +85,7 @@ const run = async () => {
   setVersion(currentVersion)
   console.log('current:', currentVersion, '/', 'version:', version)
   let newVersion = execSync(`npm version --git-tag-version=false ${version}`, { cwd: srcPackageDir }).toString()
-  newVersion = newVersion.trim().split(/(\r\n|\n|\r)/gm).filter(word => !/(\r\n|\n|\r)/.test(word)).pop()
+  newVersion = newVersion.split('\n')[1] ?? '';
   setVersion(newVersion.slice(1))
   console.log('new version:', newVersion)
 
